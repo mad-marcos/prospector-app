@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { Mail, Lock, Search } from 'lucide-react';
 
-export default function AuthPage({ onLogin }) {
+export default function AuthPage({ onAuth }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -15,11 +15,12 @@ export default function AuthPage({ onLogin }) {
       });
       if(res.ok) {
         const user = await res.json();
-        onLogin(user);
+        if(onAuth) onAuth(user);
       } else {
         alert("Erro no login");
       }
     } catch(e) {
+      console.error(e);
       alert("Servidor offline");
     }
   };
