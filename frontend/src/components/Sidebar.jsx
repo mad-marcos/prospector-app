@@ -8,7 +8,7 @@ export default function Sidebar({ user, activeProject, setActiveProject }) {
 
   const fetchProjects = async () => {
     try {
-      const res = await fetch(``${import.meta.env.VITE_API_URL}/projects`, { headers: { 'X-User-Id': String(user.id) } });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projects`, { headers: { 'X-User-Id': String(user.id) } });
       const data = await res.json();
       setProjects(data);
       if(!activeProject && data.length > 0) setActiveProject(data[0]);

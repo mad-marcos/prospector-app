@@ -8,7 +8,7 @@ export default function CRMPage({ project }) {
 
   const fetchKanban = async () => {
     if(!project) return;
-    const res = await fetch(``${import.meta.env.VITE_API_URL}/projects/${project.id}/kanban`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/${project.id}/kanban`);
     if(res.ok) {
       const data = await res.json();
       setKanban(data);
@@ -18,7 +18,7 @@ export default function CRMPage({ project }) {
   const checkStatus = async () => {
     if(!project) return;
     try {
-      const res = await fetch(``${import.meta.env.VITE_API_URL}/projects/${project.id}/status`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/${project.id}/status`);
       if(res.ok) {
         const data = await res.json();
         setStatus(data.status);
@@ -46,7 +46,7 @@ export default function CRMPage({ project }) {
   }, [status, project]);
 
   const handleScrape = async () => {
-    await fetch(``${import.meta.env.VITE_API_URL}/projects/${project.id}/scrape`, { method: 'POST' });
+    await fetch(`${import.meta.env.VITE_API_URL}/projects/${project.id}/scrape`, { method: 'POST' });
     setStatus("running");
     setProgress(0);
   };

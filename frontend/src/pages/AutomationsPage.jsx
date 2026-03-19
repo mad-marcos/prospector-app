@@ -25,7 +25,6 @@ const initialNodes = [
 
 const initialEdges = [];
 
-// Custom Node Components
 const TriggerNode = ({ data }) => (
   <div className="glass-panel" style={{ padding: '15px', minWidth: '180px', borderLeft: '4px solid #f59e0b' }}>
     <Handle type="source" position={Position.Bottom} />
@@ -49,6 +48,7 @@ const ActionNode = ({ data }) => (
       style={{ width: '100%', fontSize: '11px', background: 'rgba(0,0,0,0.2)', border: 'none', color: 'white', marginTop: '4px', borderRadius: '4px', padding: '4px' }}
       placeholder="Olá {{name}}..."
       defaultValue={data.message || ''}
+      onBlur={(e) => { data.message = e.target.value; }}
     />
   </div>
 );
@@ -101,7 +101,6 @@ export default function AutomationsPage({ project }) {
     setSaving(true);
     const flow = { nodes, edges };
     try {
-      // Logic for creating or updating
       const res = await fetch(`${import.meta.env.VITE_API_URL}/projects/${project.id}/automations`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -169,14 +168,7 @@ export default function AutomationsPage({ project }) {
                 <button className="btn-secondary" style={{ fontSize: '11px', padding: '6px 10px', justifyContent: 'flex-start' }} onClick={() => addNode('delay')}>
                   <Clock size={14}/> Esperar Tempo
                 </button>
-                <button className="btn-secondary" style={{ fontSize: '11px', padding: '6px 10px', justifyContent: 'flex-start' }}>
-                  <Filter size={14}/> Filtrar Lead
-                </button>
               </div>
-            </div>
-            
-            <div className="glass-panel" style={{ padding: '8px', color: '#ef4444', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }} onClick={() => { setNodes(initialNodes); setEdges([]); }}>
-               <Trash2 size={14} /> <span style={{ fontSize: '11px' }}>Limpar Tudo</span>
             </div>
           </Panel>
         </ReactFlow>
