@@ -1,0 +1,131 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-main: #0B0E14;
+  --bg-panel: rgba(18, 25, 38, 0.7);
+  --bg-panel-hover: rgba(28, 38, 56, 0.8);
+  --primary: #4F46E5;
+  --primary-hover: #4338CA;
+  --text-main: #FFFFFF;
+  --text-muted: #94A3B8;
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --success: #10B981;
+  --danger: #EF4444;
+  --warning: #F59E0B;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-main);
+  background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.1), transparent 400px),
+                    radial-gradient(circle at bottom left, rgba(16, 185, 129, 0.05), transparent 400px);
+  color: var(--text-main);
+  min-height: 100vh;
+}
+
+* { box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.05);
+  color: var(--text-main);
+  border: 1px solid var(--glass-border);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+input, select, textarea {
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--glass-border);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+input:focus, select:focus, textarea:focus { border-color: var(--primary); }
+
+label { font-size: 0.85rem; font-weight: 500; color: var(--text-muted); }
+
+.KanbanBoard {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  height: 100%;
+  padding-bottom: 16px;
+}
+
+.kanban-column {
+  flex: 0 0 320px;
+  background: rgba(0,0,0,0.3);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.kanban-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--glass-border);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  cursor: grab;
+  transition: border-color 0.2s;
+}
+
+.kanban-card:hover {
+  border-color: var(--primary);
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
